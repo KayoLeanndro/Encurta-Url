@@ -1,9 +1,10 @@
-package com.greensalad.URL_shortner.controller;
+package com.greensalad.url_shortner.controller;
 
-import com.greensalad.URL_shortner.model.Url;
-import com.greensalad.URL_shortner.service.UrlService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import com.greensalad.url_shortner.model.Url;
+import com.greensalad.url_shortner.service.UrlService;
 
 @RestController
 @RequestMapping("url/shortner")

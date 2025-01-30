@@ -1,8 +1,9 @@
-package com.greensalad.URL_shortner.service;
+package com.greensalad.url_shortner.service;
 
 import com.google.common.hash.Hashing;
-import com.greensalad.URL_shortner.model.Url;
-import com.greensalad.URL_shortner.repository.UrlRepository;
+import com.greensalad.url_shortner.model.Url;
+import com.greensalad.url_shortner.repository.UrlRepository;
+
 import org.apache.commons.validator.routines.UrlValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,14 +29,13 @@ public class UrlService {
 
     public static boolean isUrlValid(String url) {
         UrlValidator urlValidator = new UrlValidator(
-                new String[]{"http","https"}
-        );
+                new String[] { "http", "https" });
         boolean result = urlValidator.isValid(url);
         return result;
     }
 
     public Url generateShortUrl(String url) {
-        if(! isUrlValid(url)) {
+        if (!isUrlValid(url)) {
             System.out.println("URL is not valid");
             return null;
         }
@@ -46,6 +46,5 @@ public class UrlService {
 
         return urlRepository.save(urlObject);
     }
-
 
 }

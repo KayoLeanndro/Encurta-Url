@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.greensalad</groupId>
-	<artifactId>URL_shortner</artifactId>
+	<artifactId>url_shortner</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>URL_shortner</name>
+	<name>url_shortner</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>
@@ -42,9 +42,9 @@
 			<optional>true</optional>
 		</dependency>
 		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<scope>runtime</scope>
+    		<groupId>org.postgresql</groupId>
+   			<artifactId>postgresql</artifactId>
+    		<version>42.6.0</version> 
 		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -95,7 +95,18 @@
 					</excludes>
 				</configuration>
 			</plugin>
+			 <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+            <configuration>
+                <excludes>
+                    <exclude>
+                        <groupId>org.projectlombok</groupId>
+                        <artifactId>lombok</artifactId>
+                    </exclude>
+                </excludes>
+            </configuration>
+        </plugin>
 		</plugins>
 	</build>
-
 </project>

@@ -1,4 +1,4 @@
-package com.greensalad.URL_shortner.model;
+package com.greensalad.url_shortner.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

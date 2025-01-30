@@ -1,4 +1,4 @@
-package com.greensalad.URL_shortner;
+package com.greensalad.url_shortner;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

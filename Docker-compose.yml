@@ -1,0 +1,37 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: encurta-url-db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: urls
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - minha_rede  
+
+  app:
+    build: .
+    container_name: encurta-url-api
+    restart: always
+    depends_on:
+      - postgres
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://encurta-url-db:5432/urls
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: 1234
+    ports:
+      - "8085:8085"
+    networks:
+      - minha_rede 
+
+volumes:
+  postgres_data:
+
+networks:
+  minha_rede:  
+    driver: bridge  
