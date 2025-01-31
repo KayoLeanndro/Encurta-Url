@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encurtador de URL</title>
+</head>
+<body>
+    <h1>Encurtador de URL</h1>
+
+    <form action="#" th:action="@{/url/shortner}" th:object="${url}" method="post">
+        <label for="url">Insira a URL:</label>
+        <input type="text" id="url" name="url" required>
+        <button type="submit">Encurtar</button>
+    </form>
+
+    <h2>URL Encurtada:</h2>
+    <p th:if="${shortUrl}"><a th:href="${shortUrl}" th:text="${shortUrl}"></a></p>
+</body>
+</html>

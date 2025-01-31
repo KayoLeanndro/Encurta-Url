@@ -9,6 +9,7 @@ services:
       POSTGRES_DB: urls
     ports:
       - "5432:5432"
+      - "5005:5005" 
     volumes:
       - postgres_data:/var/lib/postgresql/data
     networks:
@@ -24,6 +25,7 @@ services:
       SPRING_DATASOURCE_URL: jdbc:postgresql://encurta-url-db:5432/urls
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: 1234
+      JAVA_TOOL_OPTIONS: "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005"
     ports:
       - "8085:8085"
     networks:

@@ -20,14 +20,14 @@ public class UrlService {
         return urlRepository.findByShortUrl(id);
     }
 
-    public static String getShortUrl(String url) {
+    public String getShortUrl(String url) {
         String shortUrl = Hashing.murmur3_32_fixed()
                 .hashString(url, StandardCharsets.UTF_8)
                 .toString();
         return shortUrl;
     }
 
-    public static boolean isUrlValid(String url) {
+    public boolean isUrlValid(String url) {
         UrlValidator urlValidator = new UrlValidator(
                 new String[] { "http", "https" });
         boolean result = urlValidator.isValid(url);
