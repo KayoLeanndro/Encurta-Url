@@ -1,14 +1,15 @@
 package com.greensalad.url_shortner.service;
 
-import com.google.common.hash.Hashing;
 import com.greensalad.url_shortner.model.Url;
 import com.greensalad.url_shortner.repository.UrlRepository;
 
-import org.apache.commons.validator.routines.UrlValidator;
+import java.util.Optional;
+import java.util.UUID;
+
+import javax.management.RuntimeErrorException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.nio.charset.StandardCharsets;
 
 @Service
 public class UrlService {
@@ -16,35 +17,39 @@ public class UrlService {
     @Autowired
     private UrlRepository urlRepository;
 
-    public String getOriginlUrl(String id) {
-        return urlRepository.findByShortUrl(id);
-    }
+    public String shortenUrl(String originalUrl) {
 
-    public String getShortUrl(String url) {
-        String shortUrl = Hashing.murmur3_32_fixed()
-                .hashString(url, StandardCharsets.UTF_8)
-                .toString();
-        return shortUrl;
-    }
-
-    public boolean isUrlValid(String url) {
-        UrlValidator urlValidator = new UrlValidator(
-                new String[] { "http", "https" });
-        boolean result = urlValidator.isValid(url);
-        return result;
-    }
-
-    public Url generateShortUrl(String url) {
-        if (!isUrlValid(url)) {
-            System.out.println("URL is not valid");
-            return null;
+        if (!isValidUrl(originalUrl)) {
+            throw new RuntimeErrorException(null, "URL is not valid");
         }
 
-        Url urlObject = new Url();
-        urlObject.setOriginalurl(url);
-        urlObject.setShorturl(getShortUrl(url));
+        String shortCode = generateShortCode();
+        Url url = new Url();
+        url.setOriginalurl(originalUrl);
+        url.setShortCode(shortCode);
+        urlRepository.save(url);
+        return shortCode;
+    }
 
-        return urlRepository.save(urlObject);
+    private String generateShortCode() {
+        return UUID.randomUUID().toString().substring(0, 6); // Código curto de 6 caracteres
+    }
+
+    public String getOriginalUrl(String shortCode) {
+        return urlRepository.findByShortCode(shortCode)
+                .map(Url::getOriginalurl)
+                .orElseThrow(() -> new RuntimeException("URL não encontrada"));
+    }
+
+    public boolean isValidUrl(String url) {
+        if (url.startsWith("http") || url.startsWith("https")) {
+            return true;
+        }
+        return false;
+    }
+
+    public Optional<Url> findByShortCode(String code) {
+        return urlRepository.findByShortCode(code);
     }
 
 }

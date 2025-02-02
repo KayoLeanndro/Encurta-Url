@@ -9,11 +9,10 @@ services:
       POSTGRES_DB: urls
     ports:
       - "5432:5432"
-      - "5005:5005" 
     volumes:
       - postgres_data:/var/lib/postgresql/data
     networks:
-      - minha_rede  
+      - minha_rede
 
   app:
     build: .
@@ -28,12 +27,13 @@ services:
       JAVA_TOOL_OPTIONS: "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005"
     ports:
       - "8085:8085"
+      - "5005:5005"
     networks:
-      - minha_rede 
+      - minha_rede
 
 volumes:
   postgres_data:
 
 networks:
-  minha_rede:  
-    driver: bridge  
+  minha_rede:
+    driver: bridge

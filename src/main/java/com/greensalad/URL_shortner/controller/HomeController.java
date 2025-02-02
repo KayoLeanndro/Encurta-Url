@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.greensalad.url_shortner.model.Url;
 import com.greensalad.url_shortner.service.UrlService;
 
 @Controller
@@ -17,24 +16,23 @@ public class HomeController {
     private UrlService urlService;
 
     @GetMapping("/")
-    public String home(Model model) {
-        model.addAttribute("url", new Url());
-        return "index";
+    public String index() {
+        return "index"; // Retorna a página principal
     }
 
-    @PostMapping("home/url/shortner")
-    public String generateShortUrl(@RequestParam String url, Model model) {
+    @PostMapping("/url/shortner")
+    public String shortenUrl(@RequestParam String url, Model model) {
+        // Gera o código curto e armazena a URL original
+        String shortCode = urlService.shortenUrl(url);
 
-        Url shortUrl = urlService.generateShortUrl(url);
+        // Monta a URL encurtada com o endpoint de redirecionamento
+        String shortUrl = "http://localhost:8085/" + shortCode;
 
-        if (shortUrl == null) {
-            model.addAttribute("erro", "Url invalida");
-            return "error";
-        }
+        // Adiciona a URL encurtada ao modelo
+        model.addAttribute("shortUrl", shortUrl);
 
-        model.addAttribute("shortUrl", shortUrl.getShorturl());
-        return "shortUrl";
-
+        // Retorna a página principal com a URL encurtada
+        return "index";
     }
 
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,13 +8,20 @@
 <body>
     <h1>Encurtador de URL</h1>
 
-    <form action="#" th:action="@{/url/shortner}" th:object="${url}" method="post">
+    <!-- Formulário para encurtar a URL -->
+    <form th:action="@{/url/shortner}" method="post">
         <label for="url">Insira a URL:</label>
         <input type="text" id="url" name="url" required>
         <button type="submit">Encurtar</button>
     </form>
 
-    <h2>URL Encurtada:</h2>
-    <p th:if="${shortUrl}"><a th:href="${shortUrl}" th:text="${shortUrl}"></a></p>
+    <!-- Exibe a URL encurtada -->
+    <div th:if="${shortUrl}">
+        <h2>URL Encurtada:</h2>
+        <p>
+            <!-- Link clicável -->
+            <a th:href="${shortUrl}" th:text="${shortUrl}"></a>
+        </p>
+    </div>
 </body>
 </html>
