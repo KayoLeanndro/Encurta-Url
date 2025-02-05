@@ -1,6 +1,5 @@
 package com.greensalad.url_shortner.controller;
 
-import java.io.IOException;
 import java.net.URI;
 import java.util.Optional;
 
@@ -9,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.greensalad.url_shortner.model.Url;
 import com.greensalad.url_shortner.service.UrlService;
 
 @RestController
@@ -35,5 +35,11 @@ public class UrlController {
         } else {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @GetMapping("/findAllUrls")
+    public ResponseEntity<Optional<Url>> findAllUrls() {
+        Optional<Url> urls = urlService.findAllUrls();
+        return ResponseEntity.ok(urls);
     }
 }

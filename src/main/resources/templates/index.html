@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Encurtador de URL</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
 </head>
 <body>
     <h1>Encurtador de URL</h1>
@@ -21,6 +22,10 @@
         <p>
             <a th:href="${shortUrl}" th:text="${shortUrl}"></a>
         </p>
+    </div>
+
+    <div>
+        <button th:href></button>
     </div>
 </body>
 </html>

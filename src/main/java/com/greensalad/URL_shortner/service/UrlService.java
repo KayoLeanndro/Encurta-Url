@@ -3,6 +3,8 @@ package com.greensalad.url_shortner.service;
 import com.greensalad.url_shortner.model.Url;
 import com.greensalad.url_shortner.repository.UrlRepository;
 
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -50,6 +52,10 @@ public class UrlService {
 
     public Optional<Url> findByShortCode(String code) {
         return urlRepository.findByShortCode(code);
+    }
+
+    public Optional<Url> findAllUrls() {
+        return urlRepository.findAllUrls();
     }
 
 }
