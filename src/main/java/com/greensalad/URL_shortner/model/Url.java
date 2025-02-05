@@ -18,5 +18,5 @@ public class Url {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String shortCode;
-    private String originalurl;
+    private String originalUrl;
 }

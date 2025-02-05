@@ -1,6 +1,7 @@
 package com.greensalad.url_shortner.controller;
 
 import java.net.URI;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,8 +39,8 @@ public class UrlController {
     }
 
     @GetMapping("/findAllUrls")
-    public ResponseEntity<Optional<Url>> findAllUrls() {
-        Optional<Url> urls = urlService.findAllUrls();
+    public ResponseEntity<List<Url>> findAllUrls() {
+        List<Url> urls = urlService.findAllUrls();
         return ResponseEntity.ok(urls);
     }
 }

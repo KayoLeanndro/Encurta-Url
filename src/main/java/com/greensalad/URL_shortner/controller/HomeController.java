@@ -1,5 +1,8 @@
 package com.greensalad.url_shortner.controller;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.greensalad.url_shortner.model.Url;
 import com.greensalad.url_shortner.service.UrlService;
 
 @Controller
@@ -33,6 +37,13 @@ public class HomeController {
 
         // Retorna a página principal com a URL encurtada
         return "index";
+    }
+
+    @GetMapping("/findAllUrls")
+    public String findAllUrls(Model model) {
+        List<Url> urls = urlService.findAllUrls();
+        model.addAttribute("urls", urls);
+        return "all_url";
     }
 
 }

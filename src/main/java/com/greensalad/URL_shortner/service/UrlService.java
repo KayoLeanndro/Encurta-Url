@@ -27,7 +27,7 @@ public class UrlService {
 
         String shortCode = generateShortCode();
         Url url = new Url();
-        url.setOriginalurl(originalUrl);
+        url.setOriginalUrl(originalUrl);
         url.setShortCode(shortCode);
         urlRepository.save(url);
         return shortCode;
@@ -39,7 +39,7 @@ public class UrlService {
 
     public String getOriginalUrl(String shortCode) {
         return urlRepository.findByShortCode(shortCode)
-                .map(Url::getOriginalurl)
+                .map(Url::getOriginalUrl)
                 .orElseThrow(() -> new RuntimeException("URL não encontrada"));
     }
 
@@ -54,7 +54,7 @@ public class UrlService {
         return urlRepository.findByShortCode(code);
     }
 
-    public Optional<Url> findAllUrls() {
+    public List<Url> findAllUrls() {
         return urlRepository.findAllUrls();
     }
 

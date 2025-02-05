@@ -4,8 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listagens de URL</title>
+    <link rel="stylesheet" th:href="@{/all_url.css}">
 </head>
 <body>
-    
+    <h1>Lista de Urls Encurtadas</h1>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Url Original</th>
+                <th>Url Encurtada</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="url : ${urls}">
+                <td th:text="${url.originalUrl}">URL Original</td>
+                <td>
+                    <a th:href="${url.shortCode}" th:text="${url.shortCode}">URL Encurtada</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <br>
+    <a th:href="@{/}" class="btn">Voltar para o Início</a>
 </body>
 </html>
