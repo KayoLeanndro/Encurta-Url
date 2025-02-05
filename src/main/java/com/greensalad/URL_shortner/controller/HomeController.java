@@ -26,7 +26,7 @@ public class HomeController {
         String shortCode = urlService.shortenUrl(url);
 
         // Monta a URL encurtada com o endpoint de redirecionamento
-        String shortUrl = "http://localhost:8085/" + shortCode;
+        String shortUrl = "http://localhost:8085/url/shortner/" + shortCode;
 
         // Adiciona a URL encurtada ao modelo
         model.addAttribute("shortUrl", shortUrl);
