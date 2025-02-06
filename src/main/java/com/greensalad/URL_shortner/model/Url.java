@@ -1,5 +1,6 @@
 package com.greensalad.url_shortner.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,6 +18,10 @@ public class Url {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @Column(unique = true)
     private String shortCode;
+
+    @Column(name = "originalurl", nullable = false)
     private String originalUrl;
 }

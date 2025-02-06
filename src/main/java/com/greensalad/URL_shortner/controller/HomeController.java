@@ -42,6 +42,7 @@ public class HomeController {
     @GetMapping("/findAllUrls")
     public String findAllUrls(Model model) {
         List<Url> urls = urlService.findAllUrls();
+        urls.forEach(url -> System.out.println("Original: " + url.getOriginalUrl() + ", Short: " + url.getShortCode()));
         model.addAttribute("urls", urls);
         return "all_url";
     }
