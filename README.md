@@ -61,13 +61,14 @@ Abra o navegador e acesse:
 http://localhost:8085
 ```
 
-Use o encurtador de URLs:
-
+### Use o encurtador de URLs:
+```
 Insira uma URL longa no campo designado.
 
 Gere um link curto e compartilhe!
 
 Acesse o link curto para ser redirecionado automaticamente para a URL original.
+```
 
 ```tree
 Estrutura do Projeto 📂
